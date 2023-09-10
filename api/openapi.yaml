@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Practice API
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /register:
+    post:
+      operationId: registerPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+      responses:
+        "200":
+          description: User registered successfully
+        "400":
+          description: Bad request
+      summary: Register a new user
+      x-eov-operation-handler: controllers/DefaultController
+components:
+  schemas:
+    UserRegistration:
+      example:
+        password: password
+        email: email
+        username: username
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+      required:
+      - email
+      - password
+      - username
+      type: object
